@@ -6,7 +6,6 @@
 
 <!-- Favicon dans l’onglet du navigateur -->
 <link rel="icon" type="image/svg+xml" href="14.svg">
-<!-- fallback PNG si le navigateur ne supporte pas le SVG -->
 <link rel="alternate icon" type="image/png" href="logo.png">
 
 <style>
@@ -23,16 +22,17 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background: #0d1117;
-        color: #fff;
-        font-family: 'Neue Haas Display Medium', Arial, sans-serif; /* police intégrée */
+        background: #ff1e00; /* ✅ fond orange */
+        color: #000; /* ✅ texte noir */
+        font-family: 'Neue Haas Display Medium', Arial, sans-serif;
         font-size: 5rem;
         margin: 0;
     }
 
     #countdown {
         text-align: center;
-        font-size: 8rem; /* décompte plus grand */
+        font-size: 8rem;
+        color: #000; /* ✅ décompte noir */
     }
 </style>
 </head>
@@ -45,7 +45,6 @@ function getNext14th() {
     const now = new Date();
     let target = new Date(now.getFullYear(), now.getMonth(), 14, 0, 0, 0);
 
-    // Si on est déjà le 14 ou après → passer au mois suivant
     if (now > target) {
         target = new Date(now.getFullYear(), now.getMonth() + 1, 14, 0, 0, 0);
     }
