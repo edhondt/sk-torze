@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>SK-torze</title>
+
+<!-- Favicon dans l’onglet du navigateur -->
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<!-- fallback PNG si le navigateur ne supporte pas le SVG -->
+<link rel="alternate icon" type="image/png" href="logo.png">
+
 <style>
     body {
         display: flex;
@@ -11,9 +17,13 @@
         height: 100vh;
         background: #0d1117;
         color: #fff;
-        font-family: Arial, sans-serif;
+        font-family: Arial, sans-serif; /* ✅ police standard */
         font-size: 3rem;
         margin: 0;
+    }
+
+    #countdown {
+        text-align: center;
     }
 </style>
 </head>
@@ -26,6 +36,7 @@ function getNext14th() {
     const now = new Date();
     let target = new Date(now.getFullYear(), now.getMonth(), 14, 0, 0, 0);
 
+    // Si on est déjà le 14 ou après → passer au mois suivant
     if (now > target) {
         target = new Date(now.getFullYear(), now.getMonth() + 1, 14, 0, 0, 0);
     }
