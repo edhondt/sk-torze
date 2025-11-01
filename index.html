@@ -4,12 +4,11 @@
 <meta charset="UTF-8">
 <title>SK-torze</title>
 
-<!-- Favicon dans l’onglet du navigateur -->
 <link rel="icon" type="image/svg+xml" href="14.svg">
 <link rel="alternate icon" type="image/png" href="logo.png">
 
 <style>
-    /* Déclaration de la police locale */
+    /* Police perso */
     @font-face {
         font-family: 'Neue Haas Display Medium';
         src: url('NeueHaasDisplayMediu.ttf') format('truetype');
@@ -19,46 +18,69 @@
 
     body {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background: #ff1e00; /* ✅ fond orange */
+        background: #ff1e00;
         color: #000;
         font-family: 'Neue Haas Display Medium', Arial, sans-serif;
-        font-size: 5rem;
         margin: 0;
-        overflow: hidden; /* empêche scroll si beaucoup de "14" */
-        position: relative;
-        user-select: none; /* empêche sélection du texte */
-        cursor: pointer;
+        overflow: hidden;
+        user-select: none;
     }
 
     #countdown {
-        text-align: center;
         font-size: 8rem;
         color: #000;
+        text-align: center;
     }
 
-    /* Style du "14" qui pop au clic */
-    .click-14 {
-        position: absolute;
+    /* ✅ Champ mot de passe */
+    #passwordBox {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    input {
+        padding: 15px 20px;
+        border: none;
+        font-family: inherit;
+        font-size: 2rem;
+        text-align: center;
+        outline: none;
+        border-radius: 10px;
+    }
+
+    button {
+        padding: 12px 25px;
+        font-size: 1.8rem;
+        font-family: inherit;
+        border: none;
+        cursor: pointer;
+        background: #000;
+        color: #ff1e00;
+        border-radius: 8px;
+    }
+
+    /* ✅ Pluie de 14 */
+    .rain-14 {
+        position: fixed;
+        top: -50px;
         font-size: 3rem;
-        font-family: 'Neue Haas Display Medium', Arial, sans-serif;
         color: #000;
-        opacity: 1;
-        transform: scale(1);
-        animation: popFade 1.3s ease-out forwards;
-        pointer-events: none; /* évite que le span bloque les clics */
+        font-family: 'Neue Haas Display Medium';
+        animation: fall linear forwards;
+        pointer-events: none;
     }
 
-    @keyframes popFade {
-        0% {
-            opacity: 1;
-            transform: scale(1);
-        }
-        100% {
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) rotate(360deg);
             opacity: 0;
-            transform: scale(3); /* grossit avant de disparaître */
         }
     }
 </style>
@@ -67,18 +89,20 @@
 
 <div id="countdown"></div>
 
+<!-- ✅ Mot de passe -->
+<div id="passwordBox">
+    <input type="password" id="passwordInput" placeholder="Mot de passe">
+    <button onclick="checkPassword()">Valider</button>
+</div>
+
 <script>
+/* Décompte */
 function getNext14th() {
     const now = new Date();
     let target = new Date(now.getFullYear(), now.getMonth(), 14, 0, 0, 0);
-
-    if (now > target) {
-        target = new Date(now.getFullYear(), now.getMonth() + 1, 14, 0, 0, 0);
-    }
-
+    if (now > target) target = new Date(now.getFullYear(), now.getMonth() + 1, 14, 0, 0, 0);
     return target;
 }
-
 function updateCountdown() {
     const targetDate = getNext14th();
     const now = new Date();
@@ -94,24 +118,34 @@ function updateCountdown() {
 
     setTimeout(updateCountdown, 1000);
 }
-
 updateCountdown();
 
-/* ✅ effet 14 au clic */
-document.addEventListener("click", (e) => {
-    const span = document.createElement("span");
-    span.classList.add("click-14");
-    span.textContent = "14";
+/* ✅ Vérification du mot de passe */
+function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
 
-    span.style.left = `${e.clientX}px`;
-    span.style.top = `${e.clientY}px`;
+    if (input === "SK-torze") {
+        startRain();
+    } else {
+        alert("❌ Mot de passe incorrect");
+    }
+}
 
-    document.body.appendChild(span);
+/* ✅ Génération de la pluie de 14 */
+function startRain() {
+    setInterval(() => {
+        const span = document.createElement("span");
+        span.classList.add("rain-14");
+        span.textContent = "14";
 
-    setTimeout(() => {
-        span.remove();
-    }, 1300);
-});
+        span.style.left = Math.random() * window.innerWidth + "px";
+        span.style.animationDuration = (Math.random() * 2 + 3) + "s";
+
+        document.body.appendChild(span);
+
+        setTimeout(() => span.remove(), 5000);
+    }, 120);
+}
 </script>
 
 </body>
