@@ -13,8 +13,8 @@
 }
 
 body {
-    background: #ffffff;
-    color: #000000;
+    background: rgb(255, 30, 0); /* Nouvelle couleur de fond */
+    color: #000000; /* Le texte sera toujours noir si jamais un navigateur affiche le PDF avec un fond transparent ou s'il y a du texte non PDF */
     font-family: 'Neue Haas Display Medium', Arial, sans-serif;
     margin: 60px;
     line-height: 1.45;
@@ -25,21 +25,11 @@ h1 {
     font-weight: 700;
     margin-bottom: 50px;
     margin-top: 0;
+    color: #ffffff; /* Pour que le titre reste visible sur le fond rouge */
 }
 
-p {
-    font-size: 1.4rem;
-    font-weight: 400;
-    margin: 18px 0;
-}
+/* Les styles pour p, p.bold et .section ne sont plus nécessaires car le texte est remplacé par le PDF */
 
-p.bold {
-    font-weight: 700;
-}
-
-.section {
-    margin-top: 40px;
-}
 </style>
 </head>
 
@@ -47,30 +37,10 @@ p.bold {
 
 <h1>MANIFESTE</h1>
 
-<p>Nous sommes le collectif <strong>Steinkrebse</strong>, à l’origine du mouvement <strong>SK-TORZE.</strong></p>
+<iframe src="manifeste.pdf" style="width: 100%; height: 800px; border: none; margin-top: 50px;">
+    Votre navigateur ne supporte pas l'affichage des PDF. Veuillez <a href="manifeste.pdf">télécharger le PDF</a> pour le consulter.
+</iframe>
 
-<p>Chaque jour, des millions de personnes quittent leur foyer pour rejoindre leur travail,
-perdant des heures dans les transports et des journées entières à cause de la distance.
-En moyenne, un mois entier disparaît chaque année dans les trajets.
-Mais certains en perdent bien plus que d’autres… c’est là que naît l’injustice.</p>
-
-<p>Ce temps volé creuse les écarts, épuise les corps, enferme des vies entières dans la routine des trajets.</p>
-
-<div class="section">
-<p>Nous réclamons le 14ᵉ mois :</p>
-<p>Le mois de temps rendu,<br>
-Le mois de justice due.</p>
-</div>
-
-<div class="section">
-<p>Rejoignez-nous.<br>
-Chaque 14 du mois, faisons entendre notre voix.<br>
-Réclamons ensemble le 14ᵉ mois.</p>
-</div>
-
-<p class="bold">Pour que le temps change enfin de camp.</p>
-
-<!-- Vidéo locale -->
 <video controls style="width: 100%; max-width: 900px; margin-top: 50px; border-radius: 12px;">
     <source src="video.mp4" type="video/mp4">
     Votre navigateur ne supporte pas la lecture vidéo.
