@@ -13,38 +13,53 @@
 }
 
 body {
-    background: rgb(255, 30, 0); /* Nouvelle couleur de fond */
-    color: #000000; /* Le texte sera toujours noir si jamais un navigateur affiche le PDF avec un fond transparent ou s'il y a du texte non PDF */
-    font-family: 'Neue Haas Display Medium', Arial, sans-serif;
-    margin: 60px;
+    background: rgb(255, 30, 0);
+    /* Suppression de la marge pour un affichage "plein écran" */
+    margin: 0;
+    padding: 0;
     line-height: 1.45;
 }
 
-h1 {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 50px;
-    margin-top: 0;
-    color: #ffffff; /* Pour que le titre reste visible sur le fond rouge */
+/* Style de l'iframe pour qu'il prenne toute la hauteur de la fenêtre */
+.pdf-fullscreen {
+    width: 100%;
+    /* 100vh = 100% de la hauteur de la fenêtre (viewport height) */
+    height: 100vh; 
+    border: none;
+    /* On retire la marge supérieure qui était présente */
+    margin-top: 0; 
+    display: block; /* Assure que l'iframe se comporte bien */
 }
 
-/* Les styles pour p, p.bold et .section ne sont plus nécessaires car le texte est remplacé par le PDF */
+/* Le style pour la vidéo sera sous le PDF et nécessitera un défilement */
+.video-container {
+    padding: 60px; /* Ajout d'un padding pour que la vidéo ne touche pas les bords */
+    background: #000000; /* Fond noir pour contraster ou le cacher */
+}
+
+.video-element {
+    width: 100%; 
+    max-width: 900px; 
+    display: block; 
+    margin: 0 auto; /* Centrage de la vidéo */
+    border-radius: 12px;
+}
 
 </style>
 </head>
 
 <body>
 
-<h1>MANIFESTE</h1>
-
-<iframe src="manifeste.pdf" style="width: 100%; height: 800px; border: none; margin-top: 50px;">
+<iframe src="manifeste.pdf" class="pdf-fullscreen">
     Votre navigateur ne supporte pas l'affichage des PDF. Veuillez <a href="manifeste.pdf">télécharger le PDF</a> pour le consulter.
 </iframe>
 
-<video controls style="width: 100%; max-width: 900px; margin-top: 50px; border-radius: 12px;">
-    <source src="video.mp4" type="video/mp4">
-    Votre navigateur ne supporte pas la lecture vidéo.
-</video>
+<div class="video-container">
+    <video controls class="video-element">
+        <source src="video.mp4" type="video/mp4">
+        Votre navigateur ne supporte pas la lecture vidéo.
+    </video>
+</div>
 
 </body>
 </html>
