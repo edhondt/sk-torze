@@ -2,10 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>SK-TORZE - Manifeste</title>
-
-<link rel="icon" type="image/svg+xml" href="14.svg">
-<link rel="alternate icon" type="image/png" href="logo.png">
+<title>Manifeste — SK-TORZE</title>
 
 <style>
 @font-face {
@@ -23,31 +20,31 @@ body {
     line-height: 1.45;
 }
 
-/* Style de l'image pour qu'elle prenne toute la largeur et la hauteur de la fenêtre */
-.manifeste-image {
-    width: 100%;
-    /* 100vh = 100% de la hauteur de la fenêtre (viewport height) */
-    height: 100vh; 
+/* --- STYLE POUR LES IMAGES EN PLEIN ÉCRAN --- */
+/* Les deux images (manifeste et celle après la vidéo) partageront ce style */
+.fullscreen-image {
+    width: 100vw; /* 100% de la largeur du viewport */
+    height: 100vh; /* 100% de la hauteur du viewport */
     display: block;
-    /* 'object-fit: cover;' assure que l'image couvre entièrement la zone 
-       sans déformation, même si cela nécessite de couper légèrement les bords.
-       Utilisez 'contain' si vous voulez voir l'image entière sans rognage, 
-       mais cela pourrait laisser des bandes rouges. */
-    object-fit: cover; 
+    object-fit: cover; /* Assure que l'image couvre entièrement la zone */
+    /* Assurez-vous qu'il n'y ait pas de marge inattendue pour le plein écran */
+    margin: 0; 
 }
 
-/* Le conteneur de la vidéo vient après l'image et nécessitera un défilement */
-.video-container {
-    padding: 60px; 
-    background: rgb(255, 30, 0); /* Laisser le fond rouge */
+/* --- SECTION VIDÉO --- */
+.video-section {
+    padding: 60px; /* Ajoute de l'espace autour de la vidéo */
+    background: rgb(255, 30, 0); 
+    display: flex; /* Utilisation de Flexbox pour centrer la vidéo */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement si le conteneur a une hauteur */
 }
 
 .video-element {
     width: 100%; 
-    max-width: 900px; 
-    display: block; 
-    margin: 0 auto; /* Centrage de la vidéo */
+    max-width: 900px; /* Limite la largeur de la vidéo */
     border-radius: 12px;
+    display: block; /* Évite les problèmes d'espace blanc sous la vidéo */
 }
 
 </style>
@@ -55,14 +52,16 @@ body {
 
 <body>
 
-<img src="manifeste.jpeg" alt="Manifeste SK-TORZE" class="manifeste-image">
+<img src="manifeste.jpeg" alt="Manifeste SK-TORZE" class="fullscreen-image">
 
-<div class="video-container">
+<div class="video-section">
     <video controls class="video-element">
         <source src="video.mp4" type="video/mp4">
         Votre navigateur ne supporte pas la lecture vidéo.
     </video>
 </div>
+
+<img src="image_apres_video.jpeg" alt="Image de fin" class="fullscreen-image">
 
 </body>
 </html>
